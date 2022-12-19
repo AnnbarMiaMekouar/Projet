@@ -8,6 +8,8 @@ var usersRouter = require("./routes/users");
 
 var app = express();
 
+app.listen(5500, () =>console.log('Server started : 5500'));
+
 app.use(logger("dev"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
@@ -27,3 +29,13 @@ const dbURL = 'mongodb+srv://annbarmekouar:Yaclouann11!!!@cluster0.hrwxbw9.mongo
 // Conecting to the database
 console.log(dbURL)
 mongoose.connect(dbURL);
+
+//Test
+const { MongoClient, ServerApiVersion } = require('mongodb');
+const uri = "mongodb+srv://annbarmekouar:Yaclouann11!!!@cluster0.x4putcj.mongodb.net/?retryWrites=true&w=majority";
+const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true, serverApi: ServerApiVersion.v1 });
+client.connect(err => {
+  const collection = client.db("test").collection("devices");
+  // perform actions on the collection object
+  client.close();
+});
